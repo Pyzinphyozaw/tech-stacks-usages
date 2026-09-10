@@ -1,2 +1,3 @@
 dist/
 vite.config.js
+*.mongodb.js

@@ -1,7 +1,9 @@
 {
   "root": true,
   "env": {
-    "browser": true
+    "node": true,
+    "browser": true,
+    "es2022": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -21,7 +23,10 @@
   },
   "overrides": [
     {
-      "files": ["*.js", "*.jsx"]
+      "files": ["src/**/*.{js,jsx}"],
+      "env": {
+        "browser": true
+      }
     }
   ]
 }
