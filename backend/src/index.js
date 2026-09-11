@@ -2,6 +2,7 @@ import { initDb } from './db/init.js'
 import express from 'express'
 import { configDotenv } from 'dotenv'
 import { postRoutes } from './routes/post.route.js'
+import { userRoutes } from './routes/user.route.js'
 //import Post from './db/models/post.js'
 import bodyParser from 'body-parser'
 import cors from 'cors'
@@ -22,7 +23,7 @@ try {
 }
 
 postRoutes(app)
-
+userRoutes(app)
 // const post = new Post({
 //   title: 'Testing Data',
 //   author: 'Pyzin',
