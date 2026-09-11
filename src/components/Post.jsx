@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types'
+import { User } from './User.jsx'
 
 export function Post({ title, author, contents }) {
   return (
     <div>
       <h1>{title}</h1>
       <p>{contents}</p>
-      <p>written by {author}</p>
+      Written by <User id={author} />
     </div>
   )
 }

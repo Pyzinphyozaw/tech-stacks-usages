@@ -1,3 +1,4 @@
+import { requireAuth } from '../middlewares/jwt.js'
 import {
   listAllPosts,
   listPostsByAuthor,
@@ -9,7 +10,7 @@ import {
 } from '../services/posts.js'
 
 export function postRoutes(app) {
-  app.get('/', (req, res) => res.send('Hello from express'))
+  app.get('/', requireAuth, (req, res) => res.send('Hello from express'))
 
   app.get('/api/v1/post', async (req, res) => {
     const { sortBy, sortOrder, author, tag } = req.params
@@ -33,7 +34,7 @@ export function postRoutes(app) {
     }
   })
 
-  app.get('/api/v1/post/:id', async (req, res) => {
+  app.get('/api/v1/post/:id', requireAuth, async (req, res) => {
     const { id } = req.params
     try {
       if (id) {
@@ -50,9 +51,9 @@ export function postRoutes(app) {
     }
   })
 
-  app.post('/api/v1/post', async (req, res) => {
+  app.post('/api/v1/post', requireAuth, async (req, res) => {
     try {
-      const post = await createPost(req.body)
+      const post = await createPost(req.auth.sub, req.body)
       return res.json(post)
     } catch (error) {
       console.error(error)
@@ -60,10 +61,10 @@ export function postRoutes(app) {
     }
   })
 
-  app.patch('/api/v1/post/:id', async (req, res) => {
+  app.patch('/api/v1/post/:id', requireAuth, async (req, res) => {
     try {
       const { id } = req.params
-      const post = await updatePost(id, req.body)
+      const post = await updatePost(req.auth.sub, id, req.body)
       res.status(200).json(post)
     } catch (error) {
       console.error(error)
@@ -71,10 +72,10 @@ export function postRoutes(app) {
     }
   })
 
-  app.delete('/api/v1/post/:id', async (req, res) => {
+  app.delete('/api/v1/post/:id', requireAuth, async (req, res) => {
     try {
       const { id } = req.params
-      await deletePost(id)
+      await deletePost(req.auth.sub, id)
       res.send('Post deleted')
     } catch (error) {
       console.error(error)
