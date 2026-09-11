@@ -13,7 +13,7 @@ export function Signup() {
   })
   const handleSubmit = (e) => {
     e.preventDefault()
-    signup.mutate()
+    signupMutation.mutate()
   }
   return (
     <form onSubmit={handleSubmit}>
