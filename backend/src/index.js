@@ -11,7 +11,7 @@ configDotenv()
 const app = express()
 app.use(
   cors({
-    origin: 'https://blog-frontend-pk17.onrender.com', // Your live frontend URL
+    origin: 'https://blog-frontend-pk17.onrender.com', // Your live frontend
     credentials: true,
   }),
 )
