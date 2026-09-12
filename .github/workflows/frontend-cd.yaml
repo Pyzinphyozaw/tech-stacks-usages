@@ -32,7 +32,7 @@ jobs:
           push: true
           tags: pyzin2002/blog-frontend:latest
           build-args: |
-          VITE_BACKEND_URL=${{secrets.VITE_BACKEND_URL}}
+            VITE_BACKEND_URL=${{secrets.VITE_BACKEND_URL}}
 
       - name: Trigger Render Deployment
         run: |
