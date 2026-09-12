@@ -9,7 +9,12 @@ import cors from 'cors'
 
 configDotenv()
 const app = express()
-app.use(cors())
+app.use(
+  cors({
+    origin: 'https://blog-frontend-pk17.onrender.com', // Your live frontend URL
+    credentials: true,
+  }),
+)
 app.use(bodyParser.json())
 try {
   await initDb()
